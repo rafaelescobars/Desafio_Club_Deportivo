@@ -26,7 +26,7 @@ http.createServer((req, res) => {
       let deportes = data.deportes
       deportes.push(deporte)
       fs.writeFileSync('Deportes.json', JSON.stringify(data))
-      res.end()
+      res.end('Deporte agregado con éxito.')
     }
 
     if (req.url.startsWith('/deportes')) {
@@ -48,18 +48,18 @@ http.createServer((req, res) => {
         const deportesEditado = deportes.map(deporte => {
           if (deporte.nombre == nombre) {
             return {
-              nombre: nombre,
-              precio: precio
+              nombre,
+              precio
             }
           } else {
-            return deporte = deporte
+            return deporte
           }
         })
 
         dataJson.deportes = deportesEditado
 
         fs.writeFileSync('Deportes.json', JSON.stringify(dataJson))
-        res.end()
+        res.end('Deporte editado con éxito.')
 
       })
     }
@@ -77,7 +77,7 @@ http.createServer((req, res) => {
         dataJson.deportes = deportesEditado
 
         fs.writeFileSync('Deportes.json', JSON.stringify(dataJson))
-        res.end()
+        res.end('Deporte eliminado con éxito.')
 
       })
     }
